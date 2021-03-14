@@ -1,3 +1,9 @@
+import PropTypes from 'prop-types';
+
+Congrats.propTypes = {
+    success: PropTypes.bool.isRequired
+}
+
 export function Congrats(props) {
     let content = <div data-test="component-congrats" />
     props.success && (
@@ -10,5 +16,5 @@ export function Congrats(props) {
         )
     )
     return content;
-
 }
+
