@@ -2,14 +2,18 @@ import { mount } from 'enzyme';
 import React from 'react';
 import { checkProps, findByTestAttr } from '../../../test/testUtils';
 import { Input } from './Input';
-import LanguageContext from '../../contexts/LanguageContext'
+import LanguageContext from '../../contexts/LanguageContext';
+import SuccessContext from '../../contexts/SuccessContext';
 
-const setup = ({ secretWord, language }) => {
+const setup = ({ secretWord, language, success }) => {
     secretWord = secretWord || 'party';
     language = language || 'en';
+    success = success || false;
     return mount(
         <LanguageContext.Provider value={language}>
-            <Input secretWord={secretWord} />
+            <SuccessContext.SuccessProvider value={[success, jest.fn()]}>
+                <Input secretWord={secretWord} />
+            </SuccessContext.SuccessProvider>
         </LanguageContext.Provider>
     )
 }
@@ -45,9 +49,9 @@ describe('state controlled input field', () => {
         expect(mockSetCurrentGuess).toHaveBeenCalledWith('train');
     })
     test('current guess is reset when guess is submitted', () => {
-    
+
         const submitButton = findByTestAttr(wrapper, 'submit-button');
-        submitButton.simulate("click", {preventDefault() {}});
+        submitButton.simulate("click", { preventDefault() { } });
 
         expect(mockSetCurrentGuess).toHaveBeenCalledWith('');
     })
@@ -60,8 +64,13 @@ describe('languagePicker', () => {
         expect(submitButton.text()).toBe("Submit");
     })
     test('correctly renders submit string in emoji', () => {
-        const wrapper = setup({language: 'emoji'});
+        const wrapper = setup({ language: 'emoji' });
         const submitButton = findByTestAttr(wrapper, 'submit-button');
         expect(submitButton.text()).toBe("🚀");
     })
+})
+
+test('input component does not show when success is true', () => {
+    const wrapper = setup({secretWord: 'party', success: true});
+    expect(wrapper.isEmptyRender()).toBe(true);
 })

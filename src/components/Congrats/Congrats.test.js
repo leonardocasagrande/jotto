@@ -1,4 +1,4 @@
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { findByTestAttr } from '../../../test/testUtils';
 import { Congrats } from './Congrats';

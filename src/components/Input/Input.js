@@ -3,6 +3,7 @@ import React from 'react';
 
 import LanguageContext from '../../contexts/LanguageContext';
 import stringModule from '../../helpers/strings';
+import SuccessContext from '../../contexts/SuccessContext'
 
 
 Input.propTypes = {
@@ -12,10 +13,12 @@ Input.propTypes = {
 export function Input({ secretWord }) {
     const [currentGuess, setCurrentGuess] = React.useState("");
     const language = React.useContext(LanguageContext);
+    const [success, setSuccess] = SuccessContext.useSuccess();
     const submitHandler = (event) => {
         event.preventDefault();
         setCurrentGuess('');
     }
+    if(success) {return null}
     return (
         <div data-test="component-input">
             <form className="form-inline">
