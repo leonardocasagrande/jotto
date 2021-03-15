@@ -28,6 +28,6 @@ function getStringByLanguage(languageCode, stringKey,
     return strings[languageCode][stringKey]
 }
 
-export default {
-    getStringByLanguage,
-}
+const exportFuncs = {getStringByLanguage}
+
+export default exportFuncs;

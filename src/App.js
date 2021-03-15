@@ -7,6 +7,8 @@ import { GuessedWords } from './components/GuessedWords/GuessedWords'
 import { Input } from './components/Input/Input';
 import LanguageContext from './contexts/LanguageContext';
 import { LanguagePicker } from './components/LanguagePicker/LanguagePicker'
+import SuccessContext from './contexts/SuccessContext';
+import GuessedWordsContext from './contexts/GuessedWordsContext';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -50,11 +52,13 @@ function App() {
       <h1>Jotto</h1>
       <LanguageContext.Provider value={state.language}>
         <LanguagePicker setLanguage={setLanguage} />
-        <Input secretWord={state.secretWord} />
-        <Congrats success={true} />
-        <GuessedWords guessedWords={[
-          { guessedWord: 'train', letterMatchCount: 3 }
-        ]} />
+        <GuessedWordsContext.GuessedWordsProvider>
+          <SuccessContext.SuccessProvider>
+            <Congrats />
+            <Input secretWord={state.secretWord} />
+          </SuccessContext.SuccessProvider>
+          <GuessedWords  />
+        </GuessedWordsContext.GuessedWordsProvider>
       </LanguageContext.Provider>
     </div>
   );
