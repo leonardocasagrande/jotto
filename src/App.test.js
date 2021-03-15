@@ -8,13 +8,13 @@ import React from 'react';
 
 const mockGetSecretWord = jest.fn();
 
-const setup = (secretWord = "party") => {
+const setup = (secretWord = "party", language = "en") => {
     mockGetSecretWord.mockClear();
     hookActions.getSecretWord = mockGetSecretWord;
 
     const mockUseReducer = jest.fn()
         .mockReturnValue([
-            { secretWord },
+            { secretWord, language },
             jest.fn()
         ]);
     React.useReducer = mockUseReducer;
