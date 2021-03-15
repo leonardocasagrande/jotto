@@ -4,6 +4,7 @@ import { checkProps, findByTestAttr } from '../../../test/testUtils';
 import { Input } from './Input';
 import LanguageContext from '../../contexts/LanguageContext';
 import SuccessContext from '../../contexts/SuccessContext';
+import GuessedWordsContext from '../../contexts/GuessedWordsContext'
 
 const setup = ({ secretWord, language, success }) => {
     secretWord = secretWord || 'party';
@@ -12,7 +13,9 @@ const setup = ({ secretWord, language, success }) => {
     return mount(
         <LanguageContext.Provider value={language}>
             <SuccessContext.SuccessProvider value={[success, jest.fn()]}>
-                <Input secretWord={secretWord} />
+                <GuessedWordsContext.GuessedWordsProvider>
+                    <Input secretWord={secretWord} />
+                </GuessedWordsContext.GuessedWordsProvider>
             </SuccessContext.SuccessProvider>
         </LanguageContext.Provider>
     )
@@ -71,6 +74,6 @@ describe('languagePicker', () => {
 })
 
 test('input component does not show when success is true', () => {
-    const wrapper = setup({secretWord: 'party', success: true});
+    const wrapper = setup({ secretWord: 'party', success: true });
     expect(wrapper.isEmptyRender()).toBe(true);
 })

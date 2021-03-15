@@ -3,7 +3,9 @@ import React from 'react';
 
 import LanguageContext from '../../contexts/LanguageContext';
 import stringModule from '../../helpers/strings';
-import SuccessContext from '../../contexts/SuccessContext'
+import SuccessContext from '../../contexts/SuccessContext';
+import { getLetterMatchCount } from '../../helpers/index';
+import GuessedWordsContext from '../../contexts/GuessedWordsContext'
 
 
 Input.propTypes = {
@@ -14,11 +16,19 @@ export function Input({ secretWord }) {
     const [currentGuess, setCurrentGuess] = React.useState("");
     const language = React.useContext(LanguageContext);
     const [success, setSuccess] = SuccessContext.useSuccess();
+    const [guessedWords, setGuessedWords] = GuessedWordsContext.useGuessedWords();
     const submitHandler = (event) => {
         event.preventDefault();
+        const letterMatchCount =
+            getLetterMatchCount(currentGuess, secretWord);
+        const newGuessedWords = [...guessedWords, { guessedWord: currentGuess, letterMatchCount }]
+        setGuessedWords(newGuessedWords);
+        if (currentGuess === secretWord) {
+            setSuccess(true);
+        }
         setCurrentGuess('');
     }
-    if(success) {return null}
+    if (success) { return null }
     return (
         <div data-test="component-input">
             <form className="form-inline">

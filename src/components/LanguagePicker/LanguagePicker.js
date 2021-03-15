@@ -11,6 +11,7 @@ export function LanguagePicker({ setLanguage }) {
     ]
     const languageIcons = languages.map(el => (
         <span data-test="language-icon"
+        style={{marginRight: '1rem', cursor: 'pointer'}}
             key={el.code}
             onClick={() => setLanguage(el.code)}>
             {el.symbol}
