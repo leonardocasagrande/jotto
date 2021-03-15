@@ -9,6 +9,7 @@ export function Input({ secretWord }) {
     const [currentGuess, setCurrentGuess] = React.useState("")
     const submitHandler = (event) => {
         event.preventDefault();
+        setCurrentGuess('');
     }
     return (
         <div data-test="component-input">
