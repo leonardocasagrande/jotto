@@ -19,6 +19,9 @@ export function GuessedWords() {
             guessedWords.map((word, index) => (
                 <tr key={index} data-test="guessed-word">
                     <td>
+                        {index + 1}
+                    </td>
+                    <td>
                         {word.guessedWord}
                     </td>
                     <td>
@@ -32,6 +35,9 @@ export function GuessedWords() {
                 <table className="table table-sm">
                     <thead className="table-light">
                         <tr>
+                            <th>
+                                #
+                            </th>
                             <th>
                                 {stringsModule.getStringByLanguage(language, 'guessColumnHeader')}
                             </th>
