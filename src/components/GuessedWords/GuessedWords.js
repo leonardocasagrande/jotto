@@ -54,7 +54,7 @@ export function GuessedWords() {
         )
     }
     return (
-        <div data-test="component-guessed-word">
+        <div data-test="component-guessed-word" style={{marginTop:'1rem'}}>
             {contents}
         </div>
     )

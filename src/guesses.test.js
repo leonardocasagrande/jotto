@@ -1,7 +1,6 @@
 import { mount } from 'enzyme';
 import { findByTestAttr } from '../test/testUtils';
 
-
 import SuccessContext from './contexts/SuccessContext';
 import GuessedWordsContext from './contexts/GuessedWordsContext';
 import { Input } from './components/Input/Input'
