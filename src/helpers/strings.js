@@ -7,6 +7,7 @@ const languageStrings = {
         guessColumnHeader: 'Guessed Words',
         guessedWords: 'Guesses',
         matchingLettersColumnHeader: 'Matching Letters',
+        totalGuesses: 'Total guesses: '
     },
     emoji: {
         congrats: '🎯🎉',
@@ -16,6 +17,7 @@ const languageStrings = {
         guessedWords: '🤷‍🔤',
         guessColumnHeader: '🤷‍',
         matchingLettersColumnHeader: '✅',
+        totalGuesses: '🏴󠁧󠁢󠁥󠁮󠁧󠁿🤷‍🔤: '
     }
 }
 
